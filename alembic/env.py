@@ -4,8 +4,10 @@ from logging.config import fileConfig
 
 from alembic import context
 
-from sqlalchemy import Connection, engine_from_config
+from sqlalchemy import engine_from_config
 from sqlalchemy import pool
+
+from sqlalchemy.engine import Connection
 from sqlalchemy.ext.asyncio import async_engine_from_config
 
 from dinodex_api.contrib.models import BaseModel
@@ -54,7 +56,7 @@ def do_run_migrations(connection: Connection) -> None:
         context.run_migrations()
 
 
-async def run_async_migrations():
+async def run_async_migrations() -> None:
     connectable = async_engine_from_config(
     config.get_section(config.config_ini_section, {}),
     prefix="sqlalchemy.",
@@ -72,7 +74,7 @@ def run_migrations_online() -> None:
 
     """
     
-    asyncio.run(run_async_migrations)
+    asyncio.run(run_async_migrations())
 
 
 if context.is_offline_mode():
