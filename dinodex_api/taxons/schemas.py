@@ -6,4 +6,4 @@ from dinodex_api.contrib.schemas import BaseSchema
 
 class Taxon(BaseSchema):
     nome: Annotated[
-        str, Field(description='Nome do taxon', examples='Theropoda', max_length=12)]
+        str, Field(description='Nome do taxon', example='Theropoda', max_length=12)]

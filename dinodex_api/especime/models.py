@@ -18,3 +18,6 @@ class EspecimeModel(BaseModel):
 
     taxon    : Mapped['TaxonModel'] = relationship(back_populates='espécime')
     taxon_id : Mapped[int] = mapped_column(ForeignKey('taxons.pk_id'))
+
+    museu    : Mapped['MuseuModel'] = relationship(back_populates='espécime')
+    museu_id : Mapped[int] = mapped_column(ForeignKey('museus.pk_id'))

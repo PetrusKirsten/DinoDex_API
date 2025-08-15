@@ -10,4 +10,4 @@ class TaxonModel(BaseModel):
     pk_id : Mapped[int] = mapped_column(Integer,    primary_key=True)
     nome  : Mapped[str] = mapped_column(String(50), nullable=False)
 
-    especime : Mapped['EspecimeModel'] = relationship(back_populates='taxon')
+    especime : Mapped['EspecimeModel'] = relationship(back_populates='taxons')
