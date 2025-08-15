@@ -1,0 +1,9 @@
+services:
+  db:
+    image: postgres:11-alpine
+    environment:
+      POSTGRES_PASSWORD: dinodex
+      POSTGRES_USER: dinodex
+      POSTGRES_DB: dinodex
+    ports:
+      - "5432:5432"
