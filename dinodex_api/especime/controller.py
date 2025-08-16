@@ -47,10 +47,12 @@ async def post(
             status_code = status.HTTP_400_BAD_REQUEST, 
             detail      = f"O museu '{museu_nome}' não foi encontrado."
         )
+    # breakpoint()
     try:
-        especime_out   = EspecimeOut(id            = uuid4(), 
+        especime_out   = EspecimeOut(id           = uuid4(), 
                                     catalogado_em = datetime.utcnow(), 
                                     **especime_in.model_dump(),)
+        
         especime_model = EspecimeModel(**especime_out.model_dump(exclude={'taxon', 'museu'}))
         especime_model.taxon_id = taxon.pk_id
         especime_model.museu_id = museu.pk_id
@@ -61,8 +63,26 @@ async def post(
     except Exception as exc:
         raise HTTPException(
             status_code = status.HTTP_500_INTERNAL_SERVER_ERROR, 
-            detail      = f"Ocorreu um erro ao inserir os dados no banco:\n{exc}."
+            detail      = f"Ocorreu um erro ao inserir os dados no banco: {exc}."
         )
         
 
     return especime_out
+
+
+@router.get(
+        "/", 
+        summary        = "Consultar todos os espécimes",
+        status_code    = status.HTTP_200_OK,
+        response_model = list[EspecimeOut],
+)
+async def query(
+    db_session: DatabaseDependency,
+) -> list[EspecimeOut]:
+    
+    especimes: list[EspecimeOut] = (
+        await db_session.execute(select(EspecimeModel))
+        ).scalars().all()
+    
+    return [EspecimeOut.model_validate(especime) for especime in especimes]
+    

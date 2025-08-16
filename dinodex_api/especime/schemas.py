@@ -46,11 +46,11 @@ class Especime(BaseSchema):
               example='bom')
         ]
 
-    catalogado_em: Annotated[
-        datetime, 
-        Field(description='Data em que o espécime foi catalogado no museu', 
-              )
-        ]  # example='bom')]
+    # catalogado_em: Annotated[
+    #     datetime, 
+    #     Field(description='Data em que o espécime foi catalogado no museu', 
+    #           )
+    #     ]  # example='bom')]
 
     taxon: Annotated[
         TaxonIn, 

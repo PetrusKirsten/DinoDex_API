@@ -20,8 +20,8 @@ class EspecimeModel(BaseModel):
     conservacao   : Mapped[str]      = mapped_column(String(11), nullable=False)
     catalogado_em : Mapped[datetime] = mapped_column(DateTime,   nullable=False)
 
-    taxon    : Mapped['TaxonModel'] = relationship(back_populates='especime')
+    taxon    : Mapped['TaxonModel'] = relationship(back_populates='especime', lazy='selectin')
     taxon_id : Mapped[int] = mapped_column(ForeignKey('taxons.pk_id'))
 
-    museu    : Mapped['MuseuModel'] = relationship(back_populates='especime')
+    museu    : Mapped['MuseuModel'] = relationship(back_populates='especime', lazy='selectin')
     museu_id : Mapped[int] = mapped_column(ForeignKey('museus.pk_id'))
