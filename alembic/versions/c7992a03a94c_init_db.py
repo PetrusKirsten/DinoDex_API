@@ -25,7 +25,7 @@ def upgrade() -> None:
     sa.Column('pk_id', sa.Integer(), nullable=False),
     sa.Column('nome', sa.String(length=40), nullable=False),
     sa.Column('cidade', sa.String(length=20), nullable=False),
-    sa.Column('pais', sa.String(length=15), nullable=False),
+    sa.Column('estado', sa.String(length=15), nullable=False),
     sa.Column('id', sa.UUID(), nullable=False),
     sa.PrimaryKeyConstraint('pk_id'),
     sa.UniqueConstraint('nome')
