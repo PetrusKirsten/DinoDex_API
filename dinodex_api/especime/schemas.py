@@ -1,5 +1,4 @@
-from datetime import datetime
-from typing   import Annotated
+from typing   import Annotated, Optional
 from pydantic import Field, PositiveFloat
 
 from dinodex_api.contrib.schemas import BaseSchema, OutMixin
@@ -24,7 +23,7 @@ class Especime(BaseSchema):
     
     idade: Annotated[
         PositiveFloat, 
-        Field(description='Idade do fósisl estimada em milhões', 
+        Field(description='Idade do fóssil estimada em milhões', 
               example=60)
         ]
 
@@ -46,12 +45,6 @@ class Especime(BaseSchema):
               example='bom')
         ]
 
-    # catalogado_em: Annotated[
-    #     datetime, 
-    #     Field(description='Data em que o espécime foi catalogado no museu', 
-    #           )
-    #     ]  # example='bom')]
-
     taxon: Annotated[
         TaxonIn, 
         Field(description='Taxon do espécime')]
@@ -68,3 +61,21 @@ class EspecimeIn(Especime):
 
 class EspecimeOut(Especime, OutMixin):
     pass
+
+
+class EspecimeUpdate(BaseSchema):
+    apelido: Annotated[
+        Optional[str], 
+        Field(None,
+              description = 'Apelido do fóssil', 
+              exampl      = 'Blue', 
+              max_length  = 50)
+        ]
+    
+    codigo: Annotated[
+        Optional[str], 
+        Field(None,
+              description = 'Código do espécime', 
+              example     = '101', 
+              max_length  = 8)
+        ]

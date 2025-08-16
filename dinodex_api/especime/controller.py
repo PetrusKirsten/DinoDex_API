@@ -1,11 +1,12 @@
 from fastapi  import APIRouter, Body, HTTPException, status
-from uuid     import uuid4
 from datetime import datetime
+from uuid     import uuid4
+from pydantic import UUID4
 
 from sqlalchemy.future import select
 
 from dinodex_api.contrib.dependencies import DatabaseDependency
-from dinodex_api.especime.schemas     import EspecimeIn, EspecimeOut
+from dinodex_api.especime.schemas     import EspecimeIn, EspecimeOut, EspecimeUpdate
 from dinodex_api.especime.models      import EspecimeModel
 from dinodex_api.museus.models        import MuseuModel
 from dinodex_api.taxons.models        import TaxonModel
@@ -14,13 +15,13 @@ router = APIRouter()
 
 @router.post(
         "/", 
-        summary="Catalogar um novo espécime",
-        status_code=status.HTTP_201_CREATED,
-        response_model=EspecimeOut,
+        summary        = "Catalogar um novo espécime",
+        status_code    = status.HTTP_201_CREATED,
+        response_model = EspecimeOut,
 )
 async def post(
-    db_session: DatabaseDependency,
-    especime_in: EspecimeIn = Body(...)
+    db_session  : DatabaseDependency,
+    especime_in : EspecimeIn = Body(...)
 ) -> EspecimeOut:
 
     taxon_nome = especime_in.taxon.nome
@@ -85,4 +86,84 @@ async def query(
         ).scalars().all()
     
     return [EspecimeOut.model_validate(especime) for especime in especimes]
+
+
+@router.get(
+        "/{id}", 
+        summary        = "Consultar um espécime pelo ID ",
+        status_code    = status.HTTP_200_OK,
+        response_model = EspecimeOut,
+)
+async def query(
+    id         : UUID4,
+    db_session : DatabaseDependency,
+) -> EspecimeOut:
     
+    taxon: EspecimeOut = (
+        await db_session.execute(select(EspecimeModel).filter_by(id=id))
+    ).scalars().first()
+    
+    if not taxon:
+        raise HTTPException(
+            status_code = status.HTTP_404_NOT_FOUND, 
+            detail      = f"Especime não encontrado pelo ID: {id}."
+        )
+
+    return taxon
+
+
+@router.patch(
+        "/{id}", 
+        summary        = "Editar um espécime pelo ID ",
+        status_code    = status.HTTP_200_OK,
+        response_model = EspecimeOut,
+)
+async def query(
+    id         : UUID4,
+    db_session : DatabaseDependency,
+    especime_up: EspecimeUpdate = Body(...),
+) -> EspecimeOut:
+    
+    especime: EspecimeOut = (
+        await db_session.execute(select(EspecimeModel).filter_by(id=id))
+    ).scalars().first()
+    
+    if not especime:
+        raise HTTPException(
+            status_code = status.HTTP_404_NOT_FOUND, 
+            detail      = f"Especime não encontrado pelo ID: {id}."
+        )
+    
+    especime_update = especime_up.model_dump(exclude_unset=True)
+    for key, value in especime_update.items():
+        setattr(especime, key, value)
+    
+    await db_session.commit()
+    await db_session.refresh(especime)
+
+    return especime
+
+
+@router.delete(
+        "/{id}", 
+        summary        = "Deletar um espécime pelo ID ",
+        status_code    = status.HTTP_204_NO_CONTENT,
+)
+async def query(
+    id         : UUID4,
+    db_session : DatabaseDependency,
+    especime_up: EspecimeUpdate = Body(...),
+) -> None:
+    
+    especime: EspecimeOut = (
+        await db_session.execute(select(EspecimeModel).filter_by(id=id))
+    ).scalars().first()
+    
+    if not especime:
+        raise HTTPException(
+            status_code = status.HTTP_404_NOT_FOUND, 
+            detail      = f"Especime não encontrado pelo ID: {id}."
+        )
+        
+    await db_session.delete(especime)
+    await db_session.commit()
