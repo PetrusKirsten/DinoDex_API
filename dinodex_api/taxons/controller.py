@@ -40,7 +40,9 @@ async def query(
     db_session: DatabaseDependency,
 ) -> list[TaxonOut]:
     
-    taxons: list[TaxonOut] = (await db_session.execute(select(TaxonModel))).scalars().all()
+    taxons: list[TaxonOut] = (
+        await db_session.execute(select(TaxonModel))
+        ).scalars().all()
     
     return taxons
 
@@ -63,7 +65,7 @@ async def query(
     if not taxon:
         raise HTTPException(
             status_code = status.HTTP_404_NOT_FOUND, 
-            detail      = f"Taxon não encontrado pelo ID: {id}"
+            detail      = f"Taxon não encontrado pelo ID: {id}."
         )
 
     return taxon

@@ -3,6 +3,8 @@ from typing   import Annotated
 from pydantic import Field, PositiveFloat
 
 from dinodex_api.contrib.schemas import BaseSchema, OutMixin
+from dinodex_api.museus.schemas  import MuseuEspecime
+from dinodex_api.taxons.schemas  import TaxonIn
 
 
 class Especime(BaseSchema):
@@ -50,13 +52,14 @@ class Especime(BaseSchema):
               )
         ]  # example='bom')]
 
-    # museu_id: Annotated[
-    #     str, 
-    #     Field(description='Estado de conservação do espécime', example=1.5, max_length=8)]
+    taxon: Annotated[
+        TaxonIn, 
+        Field(description='Taxon do espécime')]
     
-    # taxon_id: Annotated[
-    #     str, 
-    #     Field(description='Estado de conservação do espécime', example=1.5, max_length=8)]
+    museu: Annotated[
+        MuseuEspecime, 
+        Field(description='Museu do espécime')]
+    
 
 
 class EspecimeIn(Especime):
