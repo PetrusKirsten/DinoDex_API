@@ -5,7 +5,7 @@ from dinodex_api.routers import api_router
 app = FastAPI(
     title       = "DinoDex API", 
     description = "API for accessing dinosaur data",
-    version     = "0.1.0"
+    version     = "1.0.0"
 )
 
 app.include_router(api_router)
@@ -18,7 +18,10 @@ if __name__ == '__main__':
                 host        = '0.0.0.0',
                 port        = 8000,
                 reload      = True, 
-                contact     = {"name":"Petrus Kirsten","email":"petrus.kirsten@gmail.com"},
+                contact     = {
+                    "name"  :"Petrus Kirsten",
+                    "email" :"petrus.kirsten@gmail.com"
+                },
                 log_level   = 'info',
                 docs_url    = "/docs",
                 redoc_url   = "/redoc",
