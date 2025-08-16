@@ -37,7 +37,7 @@ def upgrade() -> None:
     sa.PrimaryKeyConstraint('pk_id'),
     sa.UniqueConstraint('nome')
     )
-    op.create_table('espécimes',
+    op.create_table('especimes',
     sa.Column('pk_id', sa.Integer(), nullable=False),
     sa.Column('apelido', sa.String(length=50), nullable=False),
     sa.Column('codigo', sa.String(length=11), nullable=False),

@@ -7,7 +7,7 @@ router = APIRouter()
 
 @router.post(
         "/", 
-        summary="Catalogar novo espécime.",
+        summary="Catalogar novo espécime",
         status_code=status.HTTP_201_CREATED,
 )
 async def post(
