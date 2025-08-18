@@ -10,8 +10,8 @@ from sqlalchemy import pool
 from sqlalchemy.engine import Connection
 from sqlalchemy.ext.asyncio import async_engine_from_config
 
-from dinodex_api.contrib.models import BaseModel
-from dinodex_api.contrib.repository.models import *
+from paleodex_api.contrib.models import BaseModel
+from paleodex_api.contrib.repository.models import *
 
 
 config = context.config

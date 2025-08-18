@@ -1,9 +1,9 @@
 from fastapi import FastAPI
 
-from dinodex_api.routers import api_router
+from paleodex_api.routers import api_router
 
 app = FastAPI(
-    title       = "DinoDex API", 
+    title       = "PaleoDex API", 
     description = "API for accessing dinosaur data",
     version     = "1.0.0"
 )

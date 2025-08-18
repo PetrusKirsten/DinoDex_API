@@ -3,7 +3,7 @@ from fastapi import Depends
 
 from sqlalchemy.ext.asyncio import AsyncSession
 
-from dinodex_api.configs.database import get_session
+from paleodex_api.configs.database import get_session
 
 
 DatabaseDependency = Annotated[AsyncSession, Depends(get_session)]

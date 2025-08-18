@@ -2,8 +2,8 @@ services:
   db:
     image: postgres:11-alpine
     environment:
-      POSTGRES_PASSWORD: dinodex
-      POSTGRES_USER: dinodex
-      POSTGRES_DB: dinodex
+      POSTGRES_PASSWORD: PaleoDex
+      POSTGRES_USER: PaleoDex
+      POSTGRES_DB: PaleoDex
     ports:
       - "5432:5432"

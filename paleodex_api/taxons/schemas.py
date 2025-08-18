@@ -1,7 +1,7 @@
 from typing import Annotated
 from pydantic import UUID4, Field
 
-from dinodex_api.contrib.schemas import BaseSchema
+from paleodex_api.contrib.schemas import BaseSchema
 
 
 class TaxonIn(BaseSchema):

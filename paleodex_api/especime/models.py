@@ -3,9 +3,9 @@ from sqlalchemy import DateTime, ForeignKey, Integer, String, Float
 
 from sqlalchemy.orm import Mapped, mapped_column, relationship
 
-from dinodex_api.contrib.models import BaseModel
-# from dinodex_api.museu.models   import MuseuModel
-# from dinodex_api.taxons.models  import TaxonModel
+from paleodex_api.contrib.models import BaseModel
+# from paleodex_api.museu.models   import MuseuModel
+# from paleodex_api.taxons.models  import TaxonModel
 
 
 class EspecimeModel(BaseModel):

@@ -1,8 +1,8 @@
 from fastapi import APIRouter
 
-from dinodex_api.especime.controller import router as especime
-from dinodex_api.taxons.controller import router as taxons
-from dinodex_api.museus.controller import router as museus
+from paleodex_api.especime.controller import router as especime
+from paleodex_api.taxons.controller import router as taxons
+from paleodex_api.museus.controller import router as museus
 
 api_router = APIRouter()
 

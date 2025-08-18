@@ -4,9 +4,9 @@ from pydantic import UUID4
 
 from sqlalchemy.future import select
 
-from dinodex_api.contrib.dependencies import DatabaseDependency
-from dinodex_api.taxons.schemas       import TaxonIn, TaxonOut
-from dinodex_api.taxons.models        import TaxonModel
+from paleodex_api.contrib.dependencies import DatabaseDependency
+from paleodex_api.taxons.schemas       import TaxonIn, TaxonOut
+from paleodex_api.taxons.models        import TaxonModel
 
 router = APIRouter()
 

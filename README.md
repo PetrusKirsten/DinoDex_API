@@ -1,4 +1,4 @@
-# 🦖 DinoDex API
+# 🦖 PaleoDex API
 
 API REST desenvolvida com **FastAPI** para gerenciar fósseis de dinossauros.  
 Permite cadastrar **espécimes**, **museus** e **taxons**, utilizando **SQLAlchemy assíncrono** e validação de dados com **Pydantic**.
@@ -14,7 +14,7 @@ Permite cadastrar **espécimes**, **museus** e **taxons**, utilizando **SQLAlche
 
 ## 📁 Estrutura do Projeto
 ```
-dinodex_api/
+paleodex_api/
 ├── configs/
 │   ├── database.py      # Conexão assíncrona com o Postgres
 │   └── settings.py      # Variáveis de ambiente (URL do banco)
@@ -43,8 +43,8 @@ dinodex_api/
 ## 🛠️ Instalação
 
 ```
-git clone https://github.com/seu_usuario/DinoDex_API.git
-cd DinoDex_API
+git clone https://github.com/seu_usuario/PaleoDex_API.git
+cd PaleoDex_API
 ```
 ```
 python -m venv .venv
@@ -60,7 +60,7 @@ pip install -r requirements.txt
 
 ```docker-compose up -d```
 
-```DB_URL=postgresql+asyncpg://dinodex:dinodex@localhost/dinodex```
+```DB_URL=postgresql+asyncpg://PaleoDex:PaleoDex@localhost/PaleoDex```
 
 --- 
 
@@ -75,7 +75,7 @@ make run-migrations
 ## ▶️ Execução
 ```
 make run
-uvicorn dinodex_api.main:app --reload
+uvicorn paleodex_api.main:app --reload
 ```
 Swagger: http://localhost:8000/docs  
 Redoc:   http://localhost:8000/redoc  

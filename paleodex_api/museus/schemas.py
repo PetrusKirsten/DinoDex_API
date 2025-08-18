@@ -1,14 +1,14 @@
 from pydantic import UUID4, Field
 from typing   import Annotated
 
-from dinodex_api.contrib.schemas import BaseSchema
+from paleodex_api.contrib.schemas import BaseSchema
 
 
 class MuseuIn(BaseSchema):
     nome: Annotated[
         str, 
         Field(description = 'Nome do museu', 
-              example     = 'Museu do Ipiranga', 
+              example     = 'Museu Nacional', 
               max_length  = 40)
         ]
     

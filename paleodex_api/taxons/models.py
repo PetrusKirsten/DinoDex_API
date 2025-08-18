@@ -1,8 +1,8 @@
 from sqlalchemy import Integer, String
 from sqlalchemy.orm import Mapped, mapped_column, relationship
 
-from dinodex_api.contrib.models  import BaseModel
-# from dinodex_api.especime.models import EspecimeModel
+from paleodex_api.contrib.models  import BaseModel
+# from paleodex_api.especime.models import EspecimeModel
 
 
 class TaxonModel(BaseModel):
