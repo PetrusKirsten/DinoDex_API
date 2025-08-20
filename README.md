@@ -13,6 +13,7 @@ Permite cadastrar **espécimes**, **museus** e **taxons**, utilizando **SQLAlche
 ---
 
 ## 📁 Estrutura do Projeto
+
 ```
 paleodex_api/
 ├── configs/
@@ -27,10 +28,11 @@ paleodex_api/
 ├── routers.py           # Registra os módulos de rotas
 └── main.py              # Inicializa a aplicação FastAPI
 ```
+
 📌 Migrations do banco ficam em alembic/  
 📌 O container do Postgres é definido em docker-compose.yml.
 
---- 
+---
 
 ## 🚀 Pré-requisitos
 
@@ -38,7 +40,7 @@ paleodex_api/
 - Docker (opcional, para Postgres local)
 - Postgres 11+ (caso não use Docker)
 
---- 
+---
 
 ## 🛠️ Instalação
 
@@ -46,15 +48,17 @@ paleodex_api/
 git clone https://github.com/seu_usuario/PaleoDex_API.git
 cd PaleoDex_API
 ```
+
 ```
 python -m venv .venv
 venv\Scripts\activate      # Windows PowerShell
 ```
+
 ```
 pip install -r requirements.txt
 ```
 
---- 
+---
 
 ## 🗄️ Banco de Dados
 
@@ -62,25 +66,28 @@ pip install -r requirements.txt
 
 ```DB_URL=postgresql+asyncpg://PaleoDex:PaleoDex@localhost/PaleoDex```
 
---- 
+---
 
 ## 📚 Migrações
+
 ```
 make create-migrations d="mensagem_da_migration"
 make run-migrations
 ```
 
---- 
+---
 
 ## ▶️ Execução
+
 ```
 make run
 uvicorn paleodex_api.main:app --reload
 ```
-Swagger: http://localhost:8000/docs  
-Redoc:   http://localhost:8000/redoc  
 
---- 
+Swagger: <http://localhost:8000/docs>  
+Redoc:   <http://localhost:8000/redoc>  
+
+---
 
 ## 🧪 Endpoints
 
@@ -88,7 +95,7 @@ Redoc:   http://localhost:8000/redoc
 - /museus  
 - /taxons  
 
---- 
+---
 
 ## 🤝 Contribuição
 
@@ -97,7 +104,7 @@ Redoc:   http://localhost:8000/redoc
 3. Crie uma branch  
 4. Envie um PR  
 
---- 
+---
 
 ## 📄 Licença
 
